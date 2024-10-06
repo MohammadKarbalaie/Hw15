@@ -21,7 +21,7 @@ const ProductList: React.FC<ProductListProps> = ({
           <img
             src={product.img}
             alt={product.name}
-            width={150}
+            width={120}
             className="mx-auto"
           />
           <p className="text-white font-semibold text-left px-3 py-2">
@@ -35,7 +35,7 @@ const ProductList: React.FC<ProductListProps> = ({
             <button
               className="bg-yellow-200 text-black px-4 py-1 rounded-tl-md rounded-bl-md"
               onClick={() => remove(product)}
-              disabled={cart[product.name] === 0} // غیرفعال کردن دکمه اگر تعداد صفر است
+              disabled={cart[product.name] === 0} 
             >
               -
             </button>

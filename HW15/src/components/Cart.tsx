@@ -20,7 +20,7 @@ const Cart: React.FC<CartProps> = ({
             <img
               src={product.img}
               alt={product.name}
-              width={100}
+              width={120}
               className="mx-auto"
             />
           <div className="flex flex-col justify-start items-start ml-2">
