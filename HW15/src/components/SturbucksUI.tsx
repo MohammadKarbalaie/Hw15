@@ -7,7 +7,6 @@ import Cart from "./Cart";
 export const UI: React.FC = () => {
     const [cart, setCart] = useState<{ [key: string]: number }>({});
 
-    // خواندن سبد خرید از localStorage هنگام بارگذاری کامپوننت
     useEffect(() => {
         const storedCart = localStorage.getItem("cart");
         if (storedCart) {
@@ -21,7 +20,7 @@ export const UI: React.FC = () => {
                 ...prevCart,
                 [product.name]: (prevCart[product.name] || 0) + 1,
             };
-            localStorage.setItem("cart", JSON.stringify(newCart)); // ذخیره سبد خرید در localStorage
+            localStorage.setItem("cart", JSON.stringify(newCart));
             return newCart;
         });
     };
@@ -32,7 +31,7 @@ export const UI: React.FC = () => {
             if (newCart[product.name] > 0) {
                 newCart[product.name] -= 1;
             }
-            localStorage.setItem("cart", JSON.stringify(newCart)); // ذخیره سبد خرید در localStorage
+            localStorage.setItem("cart", JSON.stringify(newCart));
             return newCart;
         });
     };
@@ -42,12 +41,11 @@ export const UI: React.FC = () => {
         return total + product.price * quantity;
     }, 0);
 
-    // تابع برای خالی کردن سبد خرید
     const handleSubmitOrder = () => {
-        setCart({}); // خالی کردن سبد خرید
-        localStorage.removeItem("cart"); // پاک کردن سبد خرید از localStorage
+        setCart({});
+        localStorage.removeItem("cart");
     };
-    
+
     return (
         <div className='flex flex-col gap-4 bg-[#ececec] pb-5 rounded-md'>
             <div>
@@ -78,11 +76,12 @@ export const UI: React.FC = () => {
                 <p>Total : {totalPrice.toFixed(2)}</p>
             </div>
 
-            <div className="flex flex-col bg-[#e9c9a2] gap-4 ml-2 mr-2 py-3 items-center justify-center mx-auto rounded-lg">
+            <div className="flex flex-col bg-[#e9c9a2] gap-4 mx-2 py-3 items-center justify-center rounded-lg">
                 <button
                     type="submit"
                     onClick={handleSubmitOrder}
-                    disabled={totalPrice === 0} // دکمه تنها وقتی فعال است که حداقل یک محصول در سبد خرید وجود داشته باشد
+                    disabled={totalPrice === 0}
+                    className={`px-4 py-2 font-semibold text-lg rounded ${totalPrice === 0 ? 'bg-none' : 'bg-gray-500'} text-white`}
                 >
                     Submit Order
                 </button>

@@ -15,14 +15,13 @@ const ProductList: React.FC<ProductListProps> = ({
   cart,
 }) => {
   return (
-    <div className="product-list w-full grid grid-cols-5 px-4 gap-3">
+    <div className="product-list w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 px-4 gap-4">
       {products.map((product, index) => (
         <div className="bg-[#1e3932] rounded-md py-2" key={index}>
           <img
             src={product.img}
             alt={product.name}
-            width={120}
-            className="mx-auto"
+            className="mx-auto w-32 h-40 object-cover"
           />
           <p className="text-white font-semibold text-left px-3 py-2">
             {product.name}
@@ -35,7 +34,7 @@ const ProductList: React.FC<ProductListProps> = ({
             <button
               className="bg-yellow-200 text-black px-4 py-1 rounded-tl-md rounded-bl-md"
               onClick={() => remove(product)}
-              disabled={cart[product.name] === 0} 
+              disabled={cart[product.name] === 0}
             >
               -
             </button>
